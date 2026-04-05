@@ -1,420 +1,453 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StockMaster Pro - Storage Management System</title>
+    <title>Inventory System</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
-    
-    <div class="app-container">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div class="logo-icon">📦</div>
-                <div class="logo-text">StockMaster</div>
+    <!-- LANDING PAGE -->
+    <div id="landing-page" class="landing-page">
+        <div class="landing-header">
+            <div class="logo">
+                <i class="fas fa-cubes"></i>
+                <h1>StockMaster</h1>
             </div>
-            
-            <nav class="nav-menu">
-                <a href="#" class="nav-item active" onclick="showSection('dashboard')">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                    Dashboard
-                </a>
-                <a href="#" class="nav-item" onclick="showSection('products')">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                    Products
-                </a>
-                <a href="#" class="nav-item" onclick="showSection('analytics')">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                    Analytics
-                </a>
-                <a href="#" class="nav-item" onclick="showSection('reports')">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    Reports
-                </a>
-                <a href="#" class="nav-item" onclick="showSection('history')">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    History
-                </a>
-            </nav>
-            
-            <div class="sidebar-footer">
-                <div class="theme-toggle" onclick="toggleTheme()">
-                    <span>Dark Mode</span>
-                    <div class="toggle-switch" id="themeToggle"></div>
+            <p class="subtitle">Select a module to begin</p>
+        </div>
+
+        <div class="modules-container">
+            <!-- Dashboard Module -->
+            <div class="module-card" onclick="openModule('dashboard')">
+                <div class="module-icon dashboard-bg">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <div class="module-content">
+                    <h3>Dashboard</h3>
+                    <p>View analytics, statistics, and business overview</p>
+                    <div class="module-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
             </div>
-        </aside>
+
+            <!-- Sales Ladder Module -->
+            <div class="module-card" onclick="openModule('sales-ladder')">
+                <div class="module-icon sales-bg">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="module-content">
+                    <h3>Sales Ladder</h3>
+                    <p>Track top performers and sales rankings</p>
+                    <div class="module-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point of Sale Module -->
+            <div class="module-card" onclick="openModule('pos')">
+                <div class="module-icon pos-bg">
+                    <i class="fas fa-cash-register"></i>
+                </div>
+                <div class="module-content">
+                    <h3>Point of Sale</h3>
+                    <p>Quick selling interface for fast transactions</p>
+                    <div class="module-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stock Management Module -->
+            <div class="module-card" onclick="openModule('stock')">
+                <div class="module-icon stock-bg">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <div class="module-content">
+                    <h3>Stock Management</h3>
+                    <p>Manage products, inventory, and categories</p>
+                    <div class="module-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landing-footer">
+            <p><i class="fas fa-shield-alt"></i> All data stored locally on your device</p>
+        </div>
+    </div>
+
+    <!-- MAIN APPLICATION -->
+    <div id="app-container" class="app-container hidden">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">
+                    <i class="fas fa-cubes"></i>
+                    <span>StockMaster</span>
+                </div>
+                <button class="home-btn" onclick="backToHome()">
+                    <i class="fas fa-home"></i>
+                    <span>Back to Home</span>
+                </button>
+            </div>
+
+            <div class="module-indicator">
+                <i id="current-icon" class="fas fa-chart-pie"></i>
+                <span id="current-name">Dashboard</span>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <!-- Dynamic menu items -->
+            </ul>
+
+            <div class="sidebar-footer">
+                <i class="fas fa-database"></i>
+                <span>Auto-saved locally</span>
+            </div>
+        </nav>
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Dashboard Section -->
-            <section id="dashboard-section" class="section fade-in">
-                <div class="top-bar">
-                    <h1 class="page-title">Dashboard</h1>
-                    <div class="user-actions">
-                        <button class="btn btn-secondary" onclick="exportData()">
-                            <span>📥</span> Export CSV
-                        </button>
-                        <label class="btn btn-secondary">
-                            <span>📤</span> Import CSV
-                            <input type="file" class="file-input" accept=".csv" onchange="importData(this)">
-                        </label>
-                        <button class="btn btn-primary" onclick="openAddModal()">
-                            <span>+</span> Add Product
-                        </button>
+            <!-- Header -->
+            <header class="header">
+                <h2 id="page-title">Overview</h2>
+                <div class="header-actions">
+                    <button class="btn-icon" onclick="exportData()" title="Export Data">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="btn-icon" onclick="document.getElementById('importFile').click()" title="Import Data">
+                        <i class="fas fa-upload"></i>
+                    </button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(this)">
+                </div>
+            </header>
+
+            <!-- DASHBOARD MODULE -->
+            <section id="dashboard-section" class="section">
+                <div class="stats-row">
+                    <div class="stat-box purple">
+                        <i class="fas fa-box"></i>
+                        <div class="stat-info">
+                            <span class="stat-number" id="stat-products">0</span>
+                            <span class="stat-label">Products</span>
+                        </div>
+                    </div>
+                    <div class="stat-box green">
+                        <i class="fas fa-dollar-sign"></i>
+                        <div class="stat-info">
+                            <span class="stat-number" id="stat-sales">$0</span>
+                            <span class="stat-label">Today's Sales</span>
+                        </div>
+                    </div>
+                    <div class="stat-box blue">
+                        <i class="fas fa-shopping-bag"></i>
+                        <div class="stat-info">
+                            <span class="stat-number" id="stat-orders">0</span>
+                            <span class="stat-label">Orders Today</span>
+                        </div>
+                    </div>
+                    <div class="stat-box orange">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div class="stat-info">
+                            <span class="stat-number" id="stat-alerts">0</span>
+                            <span class="stat-label">Low Stock</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Alerts Container -->
-                <div class="alerts-container" id="alertsContainer"></div>
-
-                <!-- Stats Grid -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <div>
-                                <div class="stat-value" id="totalProducts">0</div>
-                                <div class="stat-label">Total Products</div>
-                            </div>
-                            <div class="stat-icon primary">📦</div>
-                        </div>
-                        <div class="stat-change positive">Active inventory items</div>
+                <div class="dashboard-grid">
+                    <div class="panel">
+                        <h3><i class="fas fa-chart-line"></i> Weekly Sales</h3>
+                        <div class="chart-area" id="sales-chart"></div>
                     </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <div>
-                                <div class="stat-value" id="totalQuantity">0</div>
-                                <div class="stat-label">Total Quantity</div>
-                            </div>
-                            <div class="stat-icon success">📊</div>
-                        </div>
-                        <div class="stat-change positive">Items in stock</div>
+                    <div class="panel">
+                        <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+                        <div class="activity-list" id="activity-list"></div>
                     </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <div>
-                                <div class="stat-value" id="totalValue">$0</div>
-                                <div class="stat-label">Inventory Value</div>
-                            </div>
-                            <div class="stat-icon warning">💰</div>
-                        </div>
-                        <div class="stat-change positive">Total asset value</div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <div>
-                                <div class="stat-value" id="lowStockCount">0</div>
-                                <div class="stat-label">Low Stock Items</div>
-                            </div>
-                            <div class="stat-icon danger">⚠️</div>
-                        </div>
-                        <div class="stat-change negative">Need attention</div>
-                    </div>
-                </div>
-
-                <!-- Suggestions Panel -->
-                <div class="suggestions-panel" id="suggestionsPanel" style="display: none;">
-                    <div class="suggestions-title">💡 Smart Suggestions</div>
-                    <div id="suggestionsList"></div>
-                </div>
-
-                <!-- Quick View Table -->
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Recent Products</div>
-                        <button class="btn btn-sm btn-secondary" onclick="showSection('products')">View All</button>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Category</th>
-                                        <th>Stock</th>
-                                        <th>Status</th>
-                                        <th>Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="recentProductsTable"></tbody>
-                            </table>
-                        </div>
+                    <div class="panel wide">
+                        <h3><i class="fas fa-fire"></i> Top Products</h3>
+                        <div class="top-products" id="top-products"></div>
                     </div>
                 </div>
             </section>
 
-            <!-- Products Section -->
-            <section id="products-section" class="section" style="display: none;">
-                <div class="top-bar">
-                    <h1 class="page-title">Products</h1>
-                    <button class="btn btn-primary" onclick="openAddModal()">
-                        <span>+</span> Add Product
-                    </button>
-                </div>
-
-                <div class="search-filter-bar">
-                    <div class="search-input">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
-                    </div>
-                    <select class="filter-select" id="categoryFilter" onchange="filterProducts()">
-                        <option value="">All Categories</option>
+            <!-- SALES LADDER MODULE -->
+            <section id="sales-ladder-section" class="section hidden">
+                <div class="ladder-controls">
+                    <select id="ladder-period" onchange="renderLadder()">
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                        <option value="all">All Time</option>
                     </select>
-                    <select class="filter-select" id="stockFilter" onchange="filterProducts()">
-                        <option value="">All Stock Levels</option>
-                        <option value="normal">Normal Stock</option>
-                        <option value="low">Low Stock</option>
-                        <option value="out">Out of Stock</option>
-                    </select>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Product Name</th>
-                                        <th>Category</th>
-                                        <th>Quantity</th>
-                                        <th>Min. Level</th>
-                                        <th>Unit Price</th>
-                                        <th>Total Value</th>
-                                        <th>Supplier</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="productsTable"></tbody>
-                            </table>
-                        </div>
-                        <div class="empty-state" id="emptyState" style="display: none;">
-                            <div class="empty-state-icon">📭</div>
-                            <h3>No products found</h3>
-                            <p>Try adjusting your search or filter criteria</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Analytics Section -->
-            <section id="analytics-section" class="section" style="display: none;">
-                <div class="top-bar">
-                    <h1 class="page-title">Analytics</h1>
-                </div>
-
-                <div class="insight-grid">
-                    <div class="insight-card">
-                        <h3>Most Stocked Product</h3>
-                        <div class="insight-value" id="mostStocked">-</div>
-                        <div class="insight-desc" id="mostStockedDesc">No data available</div>
-                    </div>
-                    <div class="insight-card">
-                        <h3>Least Stocked Product</h3>
-                        <div class="insight-value" id="leastStocked">-</div>
-                        <div class="insight-desc" id="leastStockedDesc">No data available</div>
-                    </div>
-                    <div class="insight-card">
-                        <h3>Top Category</h3>
-                        <div class="insight-value" id="topCategory">-</div>
-                        <div class="insight-desc" id="topCategoryDesc">No data available</div>
-                    </div>
-                    <div class="insight-card">
-                        <h3>Restock Needed</h3>
-                        <div class="insight-value" id="restockCount">0</div>
-                        <div class="insight-desc">Products below minimum threshold</div>
-                    </div>
-                </div>
-
-                <div class="charts-grid">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Quantity by Product</div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-container">
-                                <canvas id="quantityChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Category Distribution</div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-container">
-                                <canvas id="categoryChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" style="grid-column: 1 / -1;">
-                        <div class="card-header">
-                            <div class="card-title">Stock Value Trends</div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-container">
-                                <canvas id="trendChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Reports Section -->
-            <section id="reports-section" class="section" style="display: none;">
-                <div class="top-bar">
-                    <h1 class="page-title">Reports</h1>
-                    <button class="btn btn-primary" onclick="generateReport()">
-                        <span>📄</span> Generate Report
+                    <button class="btn-primary" onclick="openSellerModal()">
+                        <i class="fas fa-plus"></i> Add Seller
                     </button>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Inventory Summary Report</div>
+                <div class="podium" id="podium"></div>
+
+                <div class="panel">
+                    <h3><i class="fas fa-list-ol"></i> All Rankings</h3>
+                    <div class="rankings-list" id="rankings-list"></div>
+                </div>
+            </section>
+
+            <!-- POINT OF SALE MODULE -->
+            <section id="pos-section" class="section hidden">
+                <div class="pos-layout">
+                    <div class="pos-products-area">
+                        <div class="pos-search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="pos-search" placeholder="Search products..." onkeyup="filterPOSProducts()">
+                        </div>
+                        <div class="pos-categories" id="pos-categories"></div>
+                        <div class="pos-products-grid" id="pos-products-grid"></div>
                     </div>
-                    <div class="card-body" id="reportContent">
-                        <div class="empty-state">
-                            <div class="empty-state-icon">📊</div>
-                            <h3>Generate a Report</h3>
-                            <p>Click the button above to generate a comprehensive inventory report</p>
+
+                    <div class="pos-cart-area">
+                        <h3><i class="fas fa-shopping-cart"></i> Current Sale</h3>
+                        <div class="cart-items" id="cart-items">
+                            <div class="empty-state">
+                                <i class="fas fa-cart-plus"></i>
+                                <p>Click products to add</p>
+                            </div>
+                        </div>
+                        <div class="cart-totals">
+                            <div class="total-row">
+                                <span>Subtotal</span>
+                                <span id="cart-subtotal">$0.00</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Tax (10%)</span>
+                                <span id="cart-tax">$0.00</span>
+                            </div>
+                            <div class="total-row grand">
+                                <span>Total</span>
+                                <span id="cart-total">$0.00</span>
+                            </div>
+                        </div>
+                        <div class="cart-buttons">
+                            <button class="btn-danger" onclick="clearCart()">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                            <button class="btn-success" onclick="openCheckout()">
+                                <i class="fas fa-check"></i> Checkout
+                            </button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- History Section -->
-            <section id="history-section" class="section" style="display: none;">
-                <div class="top-bar">
-                    <h1 class="page-title">Stock History</h1>
-                    <button class="btn btn-secondary" onclick="clearHistory()">
-                        <span>🗑️</span> Clear History
+            <!-- STOCK MANAGEMENT MODULE -->
+            <section id="stock-section" class="section hidden">
+                <div class="stock-tabs">
+                    <button class="tab-btn active" onclick="switchStockTab('products')">
+                        <i class="fas fa-box"></i> Products
+                    </button>
+                    <button class="tab-btn" onclick="switchStockTab('categories')">
+                        <i class="fas fa-tags"></i> Categories
+                    </button>
+                    <button class="tab-btn" onclick="switchStockTab('inventory')">
+                        <i class="fas fa-warehouse"></i> Inventory
                     </button>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Recent Activity</div>
-                    </div>
-                    <div class="card-body" id="historyContainer">
-                        <div class="empty-state">
-                            <div class="empty-state-icon">📋</div>
-                            <h3>No history yet</h3>
-                            <p>Stock operations will appear here</p>
+                <!-- Products Tab -->
+                <div id="tab-products" class="tab-content">
+                    <div class="toolbar">
+                        <div class="search-input">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="product-search" placeholder="Search products..." onkeyup="renderProducts()">
                         </div>
+                        <button class="btn-primary" onclick="openProductModal()">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Stock</th>
+                                    <th>Buy Price</th>
+                                    <th>Sell Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Categories Tab -->
+                <div id="tab-categories" class="tab-content hidden">
+                    <div class="toolbar">
+                        <button class="btn-primary" onclick="openCategoryModal()">
+                            <i class="fas fa-plus"></i> Add Category
+                        </button>
+                    </div>
+                    <div class="categories-grid" id="categories-grid"></div>
+                </div>
+
+                <!-- Inventory Tab -->
+                <div id="tab-inventory" class="tab-content hidden">
+                    <div class="inventory-summary">
+                        <div class="inv-card">
+                            <span class="inv-value" id="inv-total-items">0</span>
+                            <span class="inv-label">Total Items</span>
+                        </div>
+                        <div class="inv-card">
+                            <span class="inv-value" id="inv-stock-value">$0</span>
+                            <span class="inv-label">Stock Value</span>
+                        </div>
+                        <div class="inv-card warning">
+                            <span class="inv-value" id="inv-low-stock">0</span>
+                            <span class="inv-label">Low Stock</span>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <h3><i class="fas fa-bell"></i> Stock Alerts</h3>
+                        <div id="stock-alerts"></div>
                     </div>
                 </div>
             </section>
         </main>
     </div>
 
-    <!-- Add/Edit Product Modal -->
-    <div class="modal-overlay" id="productModal">
-        <div class="modal">
+    <!-- MODALS -->
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-box">
             <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle">Add New Product</h2>
-                <button class="modal-close" onclick="closeModal()">×</button>
+                <h3 id="product-modal-title">Add Product</h3>
+                <button class="close-btn" onclick="closeModal('product-modal')">&times;</button>
             </div>
-            <div class="modal-body">
-                <form id="productForm">
-                    <input type="hidden" id="productId">
-                    
-                    <div class="form-group">
-                        <label class="form-label">Product Name *</label>
-                        <input type="text" class="form-input" id="productName" required>
+            <form id="product-form" onsubmit="saveProduct(event)">
+                <input type="hidden" id="product-id">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label>Product Name *</label>
+                        <input type="text" id="product-name" required>
                     </div>
+                    <div class="form-field">
+                        <label>Category *</label>
+                        <select id="product-category" required></select>
+                    </div>
+                    <div class="form-field">
+                        <label>SKU</label>
+                        <input type="text" id="product-sku">
+                    </div>
+                    <div class="form-field">
+                        <label>Stock Quantity *</label>
+                        <input type="number" id="product-quantity" min="0" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Buy Price *</label>
+                        <input type="number" id="product-buy-price" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Sell Price *</label>
+                        <input type="number" id="product-sell-price" min="0" step="0.01" required>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label>Image URL</label>
+                    <input type="url" id="product-image" placeholder="https://...">
+                </div>
+                <div class="form-field">
+                    <label>Description</label>
+                    <textarea id="product-description" rows="2"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('product-modal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Category *</label>
-                            <input type="text" class="form-input" id="productCategory" list="categories" required>
-                            <datalist id="categories"></datalist>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Supplier</label>
-                            <input type="text" class="form-input" id="productSupplier">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Quantity *</label>
-                            <input type="number" class="form-input" id="productQuantity" min="0" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Minimum Stock Level *</label>
-                            <input type="number" class="form-input" id="productMinLevel" min="0" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Purchase Price per Unit ($) *</label>
-                        <input type="number" class="form-input" id="productPrice" min="0" step="0.01" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Total Value (Auto-calculated)</label>
-                        <input type="text" class="form-input" id="productTotalValue" readonly style="background: var(--bg); color: var(--text-secondary);">
-                    </div>
-                </form>
+    <!-- Category Modal -->
+    <div id="category-modal" class="modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Add Category</h3>
+                <button class="close-btn" onclick="closeModal('category-modal')">&times;</button>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-                <button class="btn btn-primary" onclick="saveProduct()">Save Product</button>
+            <form id="category-form" onsubmit="saveCategory(event)">
+                <div class="form-field">
+                    <label>Category Name *</label>
+                    <input type="text" id="category-name" required>
+                </div>
+                <div class="form-field">
+                    <label>Color</label>
+                    <input type="color" id="category-color" value="#667eea">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('category-modal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Category</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Seller Modal -->
+    <div id="seller-modal" class="modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Add Seller</h3>
+                <button class="close-btn" onclick="closeModal('seller-modal')">&times;</button>
+            </div>
+            <form id="seller-form" onsubmit="saveSeller(event)">
+                <div class="form-field">
+                    <label>Seller Name *</label>
+                    <input type="text" id="seller-name" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('seller-modal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Seller</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-box narrow">
+            <div class="modal-header">
+                <h3>Complete Sale</h3>
+                <button class="close-btn" onclick="closeModal('checkout-modal')">&times;</button>
+            </div>
+            <div class="checkout-summary">
+                <div class="checkout-total-display">
+                    <span>Total Amount</span>
+                    <h2 id="checkout-total-amount">$0.00</h2>
+                </div>
+                <div class="form-field">
+                    <label>Payment Method</label>
+                    <select id="payment-method">
+                        <option value="cash">Cash</option>
+                        <option value="card">Card</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-success btn-full" onclick="completeSale()">
+                    <i class="fas fa-check-circle"></i> Complete Sale
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Stock Operation Modal -->
-    <div class="modal-overlay" id="stockModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h2 class="modal-title" id="stockModalTitle">Update Stock</h2>
-                <button class="modal-close" onclick="closeStockModal()">×</button>
-            </div>
-            <div class="modal-body">
-                <form id="stockForm">
-                    <input type="hidden" id="stockProductId">
-                    
-                    <div class="form-group">
-                        <label class="form-label">Current Stock</label>
-                        <input type="text" class="form-input" id="currentStock" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Operation *</label>
-                        <select class="form-select" id="stockOperation" required>
-                            <option value="add">Add Stock (+)</option>
-                            <option value="remove">Remove Stock (-)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Quantity *</label>
-                        <input type="number" class="form-input" id="stockQuantity" min="1" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Notes (Optional)</label>
-                        <input type="text" class="form-input" id="stockNotes" placeholder="e.g., Restocking, Damaged goods, etc.">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeStockModal()">Cancel</button>
-                <button class="btn btn-primary" onclick="saveStockOperation()">Update Stock</button>
-            </div>
-        </div>
-    </div>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
 
     <script src="script.js"></script>
 </body>
